@@ -180,6 +180,28 @@ The app is configured for deployment on Vercel:
 - Connection testing validates credentials before storage
 - Simulation mode prevents accidental SMS sending during development
 
+## Backend API
+
+This repository includes serverless API routes implemented with Next.js. These endpoints integrate with WooCommerce and Pushflow and are located under `pages/api/`.
+
+### Setup
+
+1. Copy `.env.example` to `.env.local` and fill in your credentials:
+   - `WOO_BASE_URL`
+   - `WOO_CONSUMER_KEY`
+   - `WOO_CONSUMER_SECRET`
+   - `PUSHFLOW_INSTANCE_ID`
+   - `PUSHFLOW_ACCESS_TOKEN`
+2. Run `npm install` to install dependencies.
+3. Start the API locally with `npm run dev` or deploy to Vercel.
+
+### Endpoints
+
+- `GET /api/orders` – Fetch orders from WooCommerce.
+- `POST /api/orders/[orderId]/status` – Update an order status.
+- `POST /api/message` – Send an SMS via Pushflow.
+- `GET/POST /api/templates` – Manage message templates.
+
 ## Contributing
 
 1. Fork the repository
