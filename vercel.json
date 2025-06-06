@@ -2,10 +2,13 @@
   "version": 2,
   "functions": {
     "pages/api/**/*.ts": {
-      "runtime": "@vercel/node@20.x"
+      "runtime": "@vercel/node@20.11.1"
     },
     "supabase/functions/**/*.ts": {
-      "runtime": "@vercel/node@20.x"
+      "runtime": "@vercel/node@20.11.1"
+    },
+    "lib/**/*.ts": {
+      "runtime": "@vercel/node@20.11.1"
     }
   }
 }
