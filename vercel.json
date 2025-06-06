@@ -1,14 +1,3 @@
 {
-  "version": 2,
-  "functions": {
-    "pages/api/**/*.ts": {
-      "runtime": "now-node@20.x"
-    },
-    "supabase/functions/**/*.ts": {
-      "runtime": "now-node@20.x"
-    },
-    "lib/**/*.ts": {
-      "runtime": "now-node@20.x"
-    }
-  }
+  "version": 2
 }
