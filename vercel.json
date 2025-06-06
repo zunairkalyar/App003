@@ -3,6 +3,9 @@
   "functions": {
     "pages/api/**/*.ts": {
       "runtime": "@vercel/node@20.x"
+    },
+    "supabase/functions/**/*.ts": {
+      "runtime": "@vercel/node@20.x"
     }
   }
 }
