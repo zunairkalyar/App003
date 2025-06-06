@@ -243,7 +243,7 @@ const OrderDashboard = () => {
                       
                       <div className="grid md:grid-cols-3 gap-2 text-sm text-muted-foreground">
                         <div>
-                          <strong>Customer:</strong> {order.billing.first_name} {order.billing.last_name}
+                          <strong>Customer:</strong> {`${order.billing.first_name} ${order.billing.last_name}`}
                         </div>
                         <div>
                           <strong>Total:</strong> {order.total}
