@@ -182,25 +182,71 @@ The app is configured for deployment on Vercel:
 
 ## Backend API
 
-This repository includes serverless API routes implemented with Next.js. These endpoints integrate with WooCommerce and Pushflow and are located under `pages/api/`.
+This repository includes serverless API routes implemented with Next.js, designed to integrate with WooCommerce and Pushflow. These endpoints are located under `pages/api/`.
 
 ### Setup
 
-1. Copy `.env.example` to `.env.local` and fill in your credentials:
-   - `WOO_BASE_URL`
-   - `WOO_CONSUMER_KEY`
-   - `WOO_CONSUMER_SECRET`
-   - `PUSHFLOW_INSTANCE_ID`
-   - `PUSHFLOW_ACCESS_TOKEN`
-2. Run `npm install` to install dependencies.
-3. Start the API locally with `npm run dev` or deploy to Vercel.
+1.  **Environment Variables:**
+    *   Copy `.env.example` to `.env.local`.
+    *   Fill in the following credentials in `.env.local`:
+        *   `WOOCOMMERCE_CONSUMER_KEY`: Your WooCommerce Consumer Key.
+        *   `WOOCOMMERCE_CONSUMER_SECRET`: Your WooCommerce Consumer Secret.
+        *   `WOOCOMMERCE_API_URL`: Your WooCommerce API URL (e.g., `https://your-store.com`).
+        *   `PUSHFLOW_INSTANCE_ID`: Your Pushflow Instance ID.
+        *   `PUSHFLOW_ACCESS_TOKEN`: Your Pushflow Access Token.
+2.  **Install Dependencies:**
+    *   Run `npm install` to install project dependencies.
+
+### Deployment to Vercel
+
+1.  **Create a Vercel Account:**
+    *   Sign up for a Vercel account at [https://vercel.com/](https://vercel.com/).
+2.  **Install Vercel CLI:**
+    *   Install the Vercel CLI globally using `npm install -g vercel`.
+3.  **Link Your Project:**
+    *   Run `vercel link` in your project directory to link your local project with your Vercel project.
+4.  **Deploy:**
+    *   Run `vercel` to deploy your project to Vercel.
+    *   Vercel will automatically detect the Next.js project and deploy it as serverless functions.
+5.  **Set Environment Variables:**
+    *   In your Vercel project settings, add the environment variables defined in `.env.local`. This is crucial for the backend to function correctly.
+
+### Testing Endpoints
+
+You can test the API endpoints using tools like Postman or `curl`. Here are some examples:
+
+1.  **Fetch Orders:**
+
+    ```bash
+    curl https://your-vercel-app.vercel.app/api/orders
+    ```
+2.  **Update Order Status:**
+
+    ```bash
+    curl -X POST -H "Content-Type: application/json" -d '{"status":"completed"}' https://your-vercel-app.vercel.app/api/orders/123/status
+    ```
+3.  **Send SMS:**
+
+    ```bash
+    curl -X POST -H "Content-Type: application/json" -d '{"phoneNumber":"+15551234567", "message":"Your order has been shipped!"}' https://your-vercel-app.vercel.app/api/message
+    ```
+4.  **Manage Templates:**
+
+    *   **Get Templates:**
+        ```bash
+        curl https://your-vercel-app.vercel.app/api/templates
+        ```
+    *   **Create Template:**
+        ```bash
+        curl -X POST -H "Content-Type: application/json" -d '{"name":"Shipped", "text":"Your order has shipped!", "status":"shipped"}' https://your-vercel-app.vercel.app/api/templates
+        ```
 
 ### Endpoints
 
-- `GET /api/orders` – Fetch orders from WooCommerce.
-- `POST /api/orders/[orderId]/status` – Update an order status.
-- `POST /api/message` – Send an SMS via Pushflow.
-- `GET/POST /api/templates` – Manage message templates.
+*   `GET /api/orders`: Fetch orders from WooCommerce.
+*   `POST /api/orders/[orderId]/status`: Update an order status.
+*   `POST /api/message`: Send an SMS via Pushflow.
+*   `GET/POST /api/templates`: Manage message templates.
 
 ## Contributing
 
